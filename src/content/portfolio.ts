@@ -12,10 +12,10 @@ export type Accent = "blue" | "orange" | "green" | "purple";
 
 // ── Contact / social links ────────────────────────────────────────────────
 export const CONTACT = {
-  email: "hello@hanum.design",
-  linkedin: "https://linkedin.com/",
+  email: "azhanumm@gmail.com",
+  linkedin: "https://www.linkedin.com/in/az-hanum/",
   github: "https://github.com/",
-  resume: "#", // replace with a link to your résumé PDF
+  resume: "https://drive.google.com/file/d/1ta5RCrXJ__aCrRj1EtHKRsEfObkk_i_g/view?usp=sharing", // replace with a link to your résumé PDF
 };
 
 // ── Hero section ──────────────────────────────────────────────────────────
