@@ -1,0 +1,232 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-sans: "Geist", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, monospace;
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-subtle: var(--subtle);
+  --color-border: var(--border);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-accent-blue: var(--accent-blue);
+  --color-accent-orange: var(--accent-orange);
+  --color-accent-green: var(--accent-green);
+  --color-accent-purple: var(--accent-purple);
+}
+
+:root {
+  --radius: 0.5rem;
+
+  /* Warm off-white, Notion-like */
+  --background: oklch(0.985 0.003 80);
+  --surface: oklch(0.975 0.004 80);
+  --foreground: oklch(0.22 0.01 60);
+  --muted: oklch(0.955 0.005 80);
+  --muted-foreground: oklch(0.52 0.012 60);
+  --subtle: oklch(0.65 0.012 60);
+  --border: oklch(0.9 0.008 70);
+  --primary: oklch(0.24 0.01 60);
+  --primary-foreground: oklch(0.985 0.003 80);
+
+  --accent-blue: oklch(0.65 0.16 255);
+  --accent-orange: oklch(0.75 0.15 65);
+  --accent-green: oklch(0.68 0.13 165);
+  --accent-purple: oklch(0.65 0.18 295);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01", "cv11";
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: color-mix(in oklab, var(--accent-blue) 25%, transparent);
+  }
+}
+
+@utility font-mono {
+  font-family: var(--font-mono);
+  font-feature-settings: "ss01";
+}
+
+@utility text-balance {
+  text-wrap: balance;
+}
+
+@utility text-pretty {
+  text-wrap: pretty;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@utility animate-fade-up {
+  animation: fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@utility reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@utility reveal-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@utility text-gradient-brand {
+  background-image: linear-gradient(
+    100deg,
+    oklch(0.55 0.22 300) 0%,
+    oklch(0.6 0.2 265) 35%,
+    oklch(0.65 0.16 230) 65%,
+    oklch(0.7 0.14 185) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility bg-grid {
+  background-image:
+    linear-gradient(to right, color-mix(in oklab, var(--border) 60%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklab, var(--border) 60%, transparent) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+@utility bg-dots {
+  background-image: radial-gradient(
+    color-mix(in oklab, var(--border) 80%, transparent) 1px,
+    transparent 1px
+  );
+  background-size: 16px 16px;
+}
+
+@utility mask-fade-b {
+  mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+}
+
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@utility animate-float {
+  animation: float-slow 6s ease-in-out infinite;
+}
+
+/* Section tint backgrounds — slight warmth shifts between sections */
+@utility section-tint-blue {
+  background:
+    radial-gradient(1200px 400px at 20% 0%, color-mix(in oklab, var(--accent-blue) 8%, transparent), transparent 60%),
+    color-mix(in oklab, var(--accent-blue) 3%, var(--background));
+}
+@utility section-tint-orange {
+  background:
+    radial-gradient(1200px 400px at 80% 0%, color-mix(in oklab, var(--accent-orange) 10%, transparent), transparent 60%),
+    color-mix(in oklab, var(--accent-orange) 3%, var(--background));
+}
+@utility section-tint-green {
+  background:
+    radial-gradient(1200px 400px at 30% 0%, color-mix(in oklab, var(--accent-green) 9%, transparent), transparent 60%),
+    color-mix(in oklab, var(--accent-green) 3%, var(--background));
+}
+@utility section-tint-purple {
+  background:
+    radial-gradient(1200px 400px at 70% 0%, color-mix(in oklab, var(--accent-purple) 10%, transparent), transparent 60%),
+    color-mix(in oklab, var(--accent-purple) 3%, var(--background));
+}
+
+/* Spotlight-following card (uses --mx, --my custom props set via inline style) */
+@utility card-spotlight {
+  position: relative;
+  isolation: isolate;
+}
+.card-spotlight::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    260px circle at var(--mx, 50%) var(--my, 50%),
+    color-mix(in oklab, var(--spot, var(--accent-blue)) 22%, transparent),
+    transparent 60%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 0;
+}
+.card-spotlight:hover::before { opacity: 1; }
+.card-spotlight > * { position: relative; z-index: 1; }
+
+/* Wavy SVG divider helper */
+@utility divider-wave {
+  height: 60px;
+  width: 100%;
+  background: no-repeat center/100% 100% url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 60' preserveAspectRatio='none'><path d='M0,30 C200,60 400,0 600,30 C800,60 1000,0 1200,30 L1200,60 L0,60 Z' fill='%23000' fill-opacity='0.04'/></svg>");
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@utility animate-marquee {
+  animation: marquee 40s linear infinite;
+}
+
+@keyframes tilt-in {
+  from { opacity: 0; transform: perspective(1000px) rotateX(6deg) translateY(20px); }
+  to   { opacity: 1; transform: perspective(1000px) rotateX(0) translateY(0); }
+}
+@utility animate-tilt-in {
+  animation: tilt-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Magnetic press */
+@utility press {
+  transition: transform 0.15s ease;
+}
+.press:active { transform: scale(0.97); }
+
+
