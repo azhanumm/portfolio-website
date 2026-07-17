@@ -163,7 +163,7 @@ function Nav() {
       <div className="mx-auto flex h-14 w-full max-w-6xl items-center justify-between px-6 sm:px-8">
         <a href="#top" className="flex items-center gap-2 font-mono text-xs tracking-wide text-foreground">
           <span className="inline-block h-2 w-2 rounded-full bg-gradient-to-br from-accent-purple to-accent-blue" />
-          Hanum Azizah
+          Az Zahra Azizah Hanum
         </a>
         <nav className="hidden items-center gap-7 font-mono text-xs text-muted-foreground sm:flex">
           <a href="#work" className="story-link transition-colors hover:text-foreground">Work</a>
